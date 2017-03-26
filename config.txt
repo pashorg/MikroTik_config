@@ -1,0 +1,15 @@
+/interface vlan
+add arp=proxy-arp comment=x424242451_ interface=ether1 name=ether1.1006 vlan-id=1006
+add arp=proxy-arp comment=x423344421_ interface=ether2 name=ether2.1012 vlan-id=1012
+add arp=proxy-arp comment=x421114457_ interface=ether3 name=ether3.3100 vlan-id=3100
+add arp=proxy-arp comment=x421000009_ interface=ether4 name=ether4.3201 vlan-id=3201
+/ip route
+add comment=x424242451_ dst-address=100.64.15.129/25 gateway=ether1.1006 pref-src=100.64.15.129
+add comment=x423344421_ dst-address=100.64.15.130/25 gateway=ether2.1012 pref-src=100.64.15.129
+add comment=x421114457_ dst-address=100.64.15.142/25 gateway=ether3.3100 pref-src=100.64.15.129
+add comment=x421000009_ dst-address=100.64.15.190/25 gateway=ether4.3201 pref-src=100.64.15.129
+/queue simple
+add comment=x424242451_ max-limit=1024k/1024k name=x424242451 target=100.64.15.129/25
+add comment=x423344421_ max-limit=2048k/2048k name=x423344421 target=100.64.15.130/25
+add comment=x421114457_ max-limit=512k/512k name=x421114457 target=100.64.15.142/25
+add comment=x421000009_ max-limit= name=x421000009 target=100.64.15.190/25
